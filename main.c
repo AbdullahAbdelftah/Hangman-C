@@ -3,13 +3,11 @@
 #include <strings.h>
 #include <time.h>
 #include <conio.h>
-static int levelcont,step=1;
 char word[100];
 int a[3][3];
 char disp[100];
 int main()
-{
-    printf("WELCOME TO HANGMAN GAME\n");
+{    
     levels(2);
     return 0;
 }
@@ -76,19 +74,20 @@ void game(int z)
     int x=0,counter=0;
 
 
-
+ 
     while(x<=6){
         int k=0;
 
         printf("\nTHE WORD IS %d LETTERS\n",wordl);
         printf("GUESS THE LETTER\n");
-        printf("click (/) to return to main menu\n");
+        printf("click (/) to pick another random word\n");
         board(1);
         fflush(stdin);
         for(int i=0;i<wordl;i++){
         printf("%c",wor[i]);
         }
         printf("\n");
+        //printing dashes to tell the user how much letters are remaining
         for(int i=0;i<wordl;i++){
             printf("-");
         }
@@ -108,7 +107,7 @@ void game(int z)
 
             }
         }
-
+        //checking if letter is wrong by calling func game by zero 
         if(k==0){
             board(0);
             x++;
@@ -117,7 +116,7 @@ void game(int z)
             flag=1;
             break;
         }
-        //x++;
+        
 
         system("cls");
 
@@ -150,6 +149,7 @@ void game(int z)
 }
 void board(int n)
 {
+    //finding the empty part to fill it if the letter is wrong
     if(!n){
         if(a[0][1]==' '){
             a[0][1]='O';
@@ -170,6 +170,7 @@ void board(int n)
             a[2][2]='\\';
         }
     }
+    //drawing the board
     printf("\n _____");
     printf("\n|     |");
     printf("\n|     %c",a[0][1]);
